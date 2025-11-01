@@ -1,12 +1,17 @@
-import express from 'express';
-import { loginUser, logoutUser, registerUser } from '../controllers/auth.controller';
-import validateResource from '../middleware/validator.middleware';
-import { loginSchema, registerSchema } from '../schemas/user.schemas';
+import express from "express";
+import {
+  loginController,
+  logoutController,
+  registerController,
+} from "../controllers/auth.controller";
+import validateResource from "../middleware/validator.middleware";
+import { loginSchema, registerSchema } from "../schemas/user.schemas";
+import { protectRoute } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
-router.post("/register", validateResource(registerSchema), registerUser)
-router.post("/login", validateResource(loginSchema), loginUser)
-router.post("/logout", logoutUser)
+router.post("/register", validateResource(registerSchema), registerController);
+router.post("/login", validateResource(loginSchema), loginController);
+router.post("/logout", protectRoute, logoutController);
 
 export default router;

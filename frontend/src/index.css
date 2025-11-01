@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core */
+  --color-background: hsl(223 7% 10%);
+  --color-foreground: hsl(210 40% 98%);
+
+  /* Surfaces */
+  --color-card: hsl(223 10% 14%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-popover: hsl(223 10% 14%);
+  --color-popover-foreground: hsl(210 40% 98%);
+
+  /* Brand Colors */
+  --color-primary: hsl(235 86% 65%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(223 10% 18%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+  --color-accent: hsl(235 86% 65%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  /* Neutral / UI */
+  --color-muted: hsl(223 10% 18%);
+  --color-muted-foreground: hsl(215 20.2% 65.1%);
+  --color-border: hsl(223 10% 20%);
+  --color-input: hsl(223 10% 20%);
+  --color-ring: hsl(235 86% 65%);
+
+  /* Sidebar */
+  --color-sidebar-background: hsl(223 10% 12%);
+  --color-sidebar-foreground: hsl(210 40% 98%);
+  --color-sidebar-primary: hsl(235 86% 65%);
+  --color-sidebar-primary-foreground: hsl(0 0% 100%);
+  --color-sidebar-accent: hsl(223 10% 18%);
+  --color-sidebar-accent-foreground: hsl(210 40% 98%);
+  --color-sidebar-border: hsl(223 10% 20%);
+  --color-sidebar-ring: hsl(235 86% 65%);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(235 86% 65%), hsl(245 75% 60%));
+  --gradient-background: linear-gradient(180deg, hsl(223 7% 10%), hsl(223 10% 8%));
+
+  /* Shadows */
+  --shadow-discord: 0 8px 16px hsl(235 86% 65% / 0.2);
+  --shadow-card: 0 2px 8px hsl(0 0% 0% / 0.4);
+
+  /* Radius */
+  --radius: 0.5rem;
+}
