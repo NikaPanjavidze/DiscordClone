@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 export const registerController = async (
   req: Request<{}, {}, RegisterInput>,
-  res: Response,
+  res: Response
 ) => {
   const user = await createUser(req.body);
   res.status(StatusCodes.CREATED).json({
@@ -43,5 +43,12 @@ export const loginController = async (
 };
 
 export const logoutController = async (req: Request, res: Response) => {
-  res.send("hi");
+  res
+    .clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    })
+    .status(StatusCodes.NO_CONTENT)
+    .json({ success: true, message: "Logged out" });
 };

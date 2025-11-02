@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createUser, loginUser } from "./api";
+import { createUser, loginUser, logoutUser } from "./api";
 import toast from "react-hot-toast";
 
 export function useRegisterMutation() {
@@ -19,3 +19,13 @@ export function useLoginMutation() {
     },
   });
 }
+
+export function useLogoutMutation() {
+  return useMutation({
+    mutationFn: logoutUser,
+    onSuccess: () => {
+      toast.success("Logged out!");
+    },
+  });
+}
+

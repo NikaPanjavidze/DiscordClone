@@ -13,3 +13,7 @@ export async function loginUser(data: LoginFormFields) {
   const res = await api.post("/auth/login", data);
   return res.data;
 }
+
+export async function logoutUser() {
+  await api.post("/auth/logout");
+}
