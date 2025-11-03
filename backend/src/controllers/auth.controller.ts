@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createUser, loginUser } from "../services/user.services";
+import { createUser, getUserById, loginUser } from "../services/user.services";
 import { LoginInput, RegisterInput } from "../schemas/user.schemas";
 import { StatusCodes } from "http-status-codes";
 
@@ -51,4 +51,27 @@ export const logoutController = async (req: Request, res: Response) => {
     })
     .status(StatusCodes.NO_CONTENT)
     .json({ success: true, message: "Logged out" });
+};
+
+export const getMeController = async (req: Request, res: Response) => {
+  const user = req.user;
+
+  //If no user on req that means we are not authenticated
+  if (!user) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ success: false, message: "Unauthorized. Please login." });
+  }
+
+  const me = await getUserById(user.id);
+  res.status(StatusCodes.OK).json({
+    success: true,
+    data: {
+      user: {
+        _id: me.id,
+        email: me.email,
+        username: me.username,
+      },
+    },
+  });
 };

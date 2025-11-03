@@ -17,3 +17,8 @@ export async function loginUser(data: LoginFormFields) {
 export async function logoutUser() {
   await api.post("/auth/logout");
 }
+
+export async function getMe(signal: AbortSignal) {
+  const res = await api.get("/auth/me", { signal });
+  return res.data;
+}

@@ -5,6 +5,14 @@ import { LoginInput } from "../schemas/user.schemas";
 import jwt from "jsonwebtoken";
 import { BadRequestError, NotFoundError } from "../errors/customErrors";
 
+export const getUserById = async (id: string): Promise<IUserDocument> => {
+  const user = await User.findById(id);
+
+  if(!user) throw new NotFoundError("User was not found.");
+
+  return user;
+};
+
 export const createUser = async (data: IUser): Promise<IUserDocument> => {
   const { username, email, password } = data;
 
@@ -58,4 +66,3 @@ export const loginUser = async (
   // Return user info + token
   return { user, token };
 };
-
