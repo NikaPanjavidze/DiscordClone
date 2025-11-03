@@ -33,7 +33,6 @@ export const createUser = async (data: IUser): Promise<IUserDocument> => {
 export const loginUser = async (
   data: LoginInput
 ): Promise<{ user: IUserDocument; token: string }> => {
-  console.log(data);
   const { email, password } = data;
 
   // Find user by email
