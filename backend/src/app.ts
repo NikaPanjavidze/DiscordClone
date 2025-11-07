@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.routes";
+import friendsRouter from "./routes/friends.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
@@ -19,6 +20,8 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/friends", friendsRouter);
+
 
 // Error handler last
 app.use(errorHandler);

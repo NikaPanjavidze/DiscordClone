@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { createUser, getUserById, loginUser } from "../services/user.services";
 import { LoginInput, RegisterInput } from "../schemas/user.schemas";
 import { StatusCodes } from "http-status-codes";

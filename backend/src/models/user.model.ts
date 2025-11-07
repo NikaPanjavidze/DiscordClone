@@ -7,9 +7,12 @@ const userSchema = new Schema<IUserDocument>(
   {
     email: { type: String, unique: true },
     username: { type: String },
-    password: { type: String, select: false},
+    password: { type: String, select: false },
+    friends: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] },
+    ],
   },
   { timestamps: true }
 );
 
-export const User =  mongoose.model<IUserDocument>("User", userSchema);
+export const User = mongoose.model<IUserDocument>("User", userSchema);
