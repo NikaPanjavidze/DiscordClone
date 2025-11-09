@@ -1,17 +1,17 @@
 import React from "react";
 import Button from "../../ui/Button";
+import type { IUser } from "../../../types/user.types";
 
-interface User {
-  id: number;
-  name: string;
-  online: boolean;
+interface FriendType extends IUser {
+  isOnline: boolean;
 }
 
 interface UserListItemProps {
-  user: User;
+  friend: FriendType;
 }
 
-const UserItem: React.FC<UserListItemProps> = ({ user }) => {
+const UserItem: React.FC<UserListItemProps> = ({ friend }) => {
+  console.log(friend)
   return (
     <Button
       variant="ghost"
@@ -22,12 +22,12 @@ const UserItem: React.FC<UserListItemProps> = ({ user }) => {
           src="https://avatar.iran.liara.run/public/38"
           className="h-8 w-8"
         ></img>
-        {user.online && (
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-primary rounded-full border-2 border-sidebar" />
+        {friend.isOnline && (
+          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-sidebar" />
         )}
       </div>
       <span className="text-sm font-medium text-sidebar-foreground group-hover:text-foreground ">
-        {user.name}
+        {friend.username}
       </span>
     </Button>
   );

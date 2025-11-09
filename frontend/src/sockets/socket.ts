@@ -1,8 +1,13 @@
 import { io, Socket } from "socket.io-client";
+import { useFriendsStore } from "../store/friends.store";
+import { useUsersStore } from "../store/users.store";
 
 let socket: Socket | null = null;
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5002";
+
+const { setPendingInvitations, setFriends } = useFriendsStore.getState();
+const { setOnlineUsers } = useUsersStore.getState();
 
 export const connectWithSocketServer = () => {
   if (!socket) {
@@ -19,10 +24,26 @@ export const connectWithSocketServer = () => {
     socket.on("disconnect", () => {
       console.log("❌ Disconnected from Socket.IO server");
     });
+
+    socket.on("friend-invitations", (data) => {
+      const { pendingInvitations } = data;
+      console.log("friends invitation data came", pendingInvitations);
+      setPendingInvitations(pendingInvitations);
+    });
+
+    socket.on("friends-list", (data) => {
+      const { friends } = data;
+      setFriends(friends);
+    });
+
+    socket.on("online-users", (data) => {
+      const { onlineUsers } = data;
+      setOnlineUsers(onlineUsers);
+    });
   }
 };
 
-// Getter function to use socket instance safely in other files
+// Getter function for using socket instance safely in other files
 export const getSocket = (): Socket => {
   if (!socket) {
     throw new Error(
